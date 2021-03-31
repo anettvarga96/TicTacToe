@@ -99,17 +99,9 @@ namespace TicTacToe
                 }
             }
 
-            if (symbols[0] != Symbol.Empty && symbols[0] == symbols[4] && symbols[4] == symbols[8])
-            {
-                gameEnded = true;
-            }
-
-            if (symbols[2] != Symbol.Empty && symbols[2] == symbols[4] && symbols[4] == symbols[6])
-            {
-                gameEnded = true;
-            }
-
-            if (!symbols.Any(element => element == Symbol.Empty))
+            if (symbols[0] != Symbol.Empty && symbols[0] == symbols[4] && symbols[4] == symbols[8] ||
+                symbols[2] != Symbol.Empty && symbols[2] == symbols[4] && symbols[4] == symbols[6] ||
+                !symbols.Any(element => element == Symbol.Empty))
             {
                 gameEnded = true;
             }
