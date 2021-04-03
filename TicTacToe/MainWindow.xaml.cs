@@ -54,11 +54,6 @@ namespace TicTacToe
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (gameEnded)
-            {
-                NewGame();
-                return;
-            }
 
             var button = (Button)sender;
             var column = Grid.GetColumn(button);
@@ -100,10 +95,27 @@ namespace TicTacToe
             }
 
             if (symbols[0] != Symbol.Empty && symbols[0] == symbols[4] && symbols[4] == symbols[8] ||
-                symbols[2] != Symbol.Empty && symbols[2] == symbols[4] && symbols[4] == symbols[6] ||
-                !symbols.Any(element => element == Symbol.Empty))
+                symbols[2] != Symbol.Empty && symbols[2] == symbols[4] && symbols[4] == symbols[6])
             {
                 gameEnded = true;
+            }
+
+            if (!symbols.Any(element => element == Symbol.Empty))
+            {
+                var result = MessageBox.Show("It's a tie!", ":(");
+                if (result == MessageBoxResult.OK)
+                {
+                    NewGame();
+                }
+            }
+
+            if (gameEnded)
+            {
+                var result = MessageBox.Show("You win!", "Congrats!");
+                if (result == MessageBoxResult.OK)
+                {
+                    NewGame();
+                }
             }
         }
     }
